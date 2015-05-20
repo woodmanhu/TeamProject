@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+
+    ViewBag.Title = "Account Page";
+}
+<!DOCTYPE html>
+<html ng-app="eventApp" ng-controller="eventAppController">
+
+<body>
+    <div class="jumbotron">
+        <h2>@Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</h2>
+
+        <p class="lead">In your account, you can edit your personal information, pick your facvorate events, and have a lot fun!</p>
+        <h3>Here is some events for you</h3>
+        <div class="eventlist">
+            <ul data-ng-repeat="event in events|filter:event.Type='Movie'|limitTo:10">
+                <li><img ng-src="{{event.Url}}" /></li>
+            </ul>
+        </div>
+
+    </div>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/js/app.js"></script>
+    @section Scripts {
+    @Scripts.Render("~/Content/css")
+    }
+</body>
+</html>

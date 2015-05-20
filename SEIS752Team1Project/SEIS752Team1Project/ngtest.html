@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html data-ng-app="demoApp">
+<head>
+    <title></title>
+</head>
+<body >
+    <div>
+        <div ng-view></div>
+
+    </div>
+
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-route.js"></script>
+    <script src="Scripts/ngtest.js"></script>
+
+    <!--<script>
+        var demoApp = angular.module('demoApp', ['ngRoute']);
+        demoApp.config(function ($routeProvider) {
+            $routeProvider
+            .when('/',
+            {
+                templateUrl: 'ngtest1.html',
+                controller: 'SimpleController'
+               
+            })
+            .when('/ngtest2',
+            {
+                templateUrl: 'ngtest2.html',
+                controller: 'SimpleController'
+                
+            })
+            .otherwise({ redirectTo: '/' });
+        });
+        var controllers = {};
+        controllers.SimpleController = function ($scope) {
+            $scope.customers = [
+            { name: 'Kevin Hu', city: 'Burnsville' },
+            { name: 'qiwen wang', city: 'Minnesota' },
+              { name: 'yaqi wang', city: 'Tianjin' }
+            ];
+            $scope.addCustomer = function () {
+                $scope.customers.push({
+                    name: $scope.newCustomer.name,
+                    city: $scope.newCustomer.city
+                });
+            };
+        }
+        demoApp.controller(controllers);
+
+    </script>-->
+
+</body>
+</html>

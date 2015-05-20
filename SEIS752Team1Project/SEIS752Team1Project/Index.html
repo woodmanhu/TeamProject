@@ -1,0 +1,482 @@
+﻿<!DOCTYPE html>
+<html ng-app="eventApp">
+<head>
+    <title>SEIS752 Event website</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Asap:400,700italic' rel='stylesheet' type='text/css'>
+
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/css/page.css" rel="stylesheet" />
+</head>
+<body>
+     <div class="bar-left">
+         <div class="logo">
+             <h3 style="color:#ffffff;">Team1 Project</h3>
+         </div>
+         <div class="navigater-left">
+             <div class="search">
+                 <input class="search-button" type="button" value="Search" id="toggle" />
+             </div>
+             <ul>
+                 <li>
+                     <a href="Index.html">
+
+                     <span>                  
+                         <img src="http://icons.iconarchive.com/icons/double-j-design/origami-colored-pencil/96/red-home-icon.png">
+                         <text style ="padding-left:25px;">Home</text>
+                     </span>
+                     </a>
+                 </li>
+                 <li>
+                     <a id="NewComing" href="#Newtab">
+                         <span>
+                             <img src="http://icons.iconarchive.com/icons/double-j-design/origami-colored-pencil/96/red-star-icon.png">
+                             <text style="padding-left:0;"> New Coming </text>
+                         </span>
+                     </a>
+                 </li>
+                 <li>
+                     
+
+                     <a href="https://localhost:44301/Account/Login">
+                         <span>
+                             <img src="http://icons.iconarchive.com/icons/double-j-design/origami-colored-pencil/96/red-user-icon.png">
+                             <text> Account </text>
+                         </span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="#">
+                         <span>                      
+                             <img src="http://icons.iconarchive.com/icons/double-j-design/origami-colored-pencil/96/red-tag-icon.png">
+                             <text style="padding-left:25px;"> About </text>
+                         </span>
+                     </a>
+                 </li>
+                 <li>
+                     <a href="#">
+                         <span>
+                             <img src="http://icons.iconarchive.com/icons/double-j-design/origami-colored-pencil/96/red-talk-icon.png">
+                             <text> Contact </text>
+                         </span>
+                     </a>
+                 </li>
+             </ul>
+         </div>
+        </div>
+    <div class="container" ng-controller="eventAppController">
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Event Detials</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form" name="viewuser">
+                            <div class="form-group">
+                                <div class="col-sm-10">
+                                    <img ng-src="{{event.Url}}" />
+                                    </div>
+                                </div>
+                        </form>
+                            <form class="form-horizontal" role="form" name="viewuser">
+                                <div class="form-group">
+                                    <label for="Name" class="col-sm-2 control-label">Name</label>
+                                    <div class="col-sm-10">
+                                        {{event.Name}}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Type" class="col-sm-2 control-label">Type</label>
+                                    <div class="col-sm-10">
+                                        {{event.Type}}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Date" class="col-sm-2 control-label">Start Date</label>
+                                    <div class="col-sm-10">
+                                        {{event.Date}}
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Location" class="col-sm-2 control-label">Location</label>
+                                    <div class="col-sm-10">
+                                        {{event.Location}}
+                                    </div>
+                                </div>
+                            </form>
+</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="content-main">
+
+            <div class="bar-top">
+                <div class="navigater-top">
+                    <ul style="font-family: 'Asap', sans-serif; font-weight:700;font-style:italic; font-size:52px;">
+                        <li>
+                            <a id="Sport" href="#Sporttab">
+                                <span>Sport</span>
+                            </a>
+
+                        </li>
+                        <li>
+                            <a id="Musical" href="#Musicaltab">
+                                <span>Musical</span>
+                            </a>
+
+                        </li>
+                        <li>
+                            <!--style="border-right:1px solid #dedede"-->
+                            <a id="Movie" href="#Movietab">
+                                <span>Movie</span>
+                            </a>
+
+                        </li>
+                    </ul>
+
+                </div>
+
+
+            </div>
+            <div class="searchbar">
+                <div class="subsb">
+                    <p>Search:</p>
+                    <input class="text" type="text" value="Search" ng-keypress="searchStyle={display:'inline'}" ng-model="searchFilter" />
+                    <input class="searchsubmit" type="submit" />
+
+                    <ul>
+                        <li ng-style="searchStyle" ng-repeat="event in events | filter:searchFilter">
+                            <a data-ng-click="get(event)" data-toggle="modal" data-target="#myModal">
+                                <img ng-src="{{event.Url}}" />
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+
+
+                    <!--Sport-->
+
+                    <div id="Sporttab" class="content-pane fade active in">
+
+                        <div style="position:relative;">
+                            <div class="cell sizeL" data-sizelargew="sizeL" style="position:absolute; top:0px; left:0px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style=" opacity:1; width:450px; height:338px;">
+                                   <a ng-repeat ="event in events | filter:filter.Name=1" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+                                     <p style="opacity: 1;">
+                                            <img ng-src="{{event.Url}}">
+                                        </p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cell sizeL" data-sizelargew="sizeL" style="position:absolute; top:0px; left:460.333333333333px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style=" opacity:1; width:428px; height:428px;">
+                                    <a ng-repeat="event in events | filter:filter.Name=500" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+
+
+                                        <iframe width="428" height="428" src="https://www.youtube.com/embed/nu6Zv7EosBg?t=5&autoplay=1&cc_load_policy=1" frameborder="0" allowfullscreen></iframe>
+
+                                    </a>
+
+                                </div>
+                            </div>
+                            <div class="cell sizeS1" data-sizelargew="sizeM" style="position:absolute; top:0px; left:903.666666666667px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style="opacity: 1; width:428px; height:206px;">
+                                    <a ng-repeat="event in events | filter:filter.Name='car'" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+                                        <img ng-src="{{event.Url}}">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cell sizeS2" data-sizelargew="sizeM" style="position:absolute; top:222.166666666667px; left:903.666666666667px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style="opacity: 1; width:428px; height:556px;">
+                                    <a ng-repeat="event in events | filter:filter.Name='box'" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+                                        <img ng-src="{{event.Url}}">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cell sizeM" data-sizelargew="sizeM" style="position:absolute; top:356.333333333333px; left:0px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style="opacity: 1; width:420px; height:420px;">
+                                    <a ng-repeat="event in events | filter:filter.Name=420" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+                                        <img ng-src="{{event.Url}}">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cell sizeM" data-sizelargew="sizeM" style="position:absolute; top:444.333333333333px; left:437.333333333333px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style="opacity: 1; width:450px; height:336px;">
+                                    <a ng-repeat="event in events | filter:filter.Name='bicycle'" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+                                        <img ng-src="{{event.Url}}">
+                                    </a>
+                                </div>
+                            </div>
+                            <!--<div class="cell sizeM" data-sizelargew="sizeM" style="position:absolute; top:800.333333333333px; left:903.666666666667px;">
+                            <div class="box box-shadow box-radius box-shadowOn" style="opacity: 1; width:428px; height:206px;">
+
+                            </div>
+                        </div>-->
+                        </div>
+                    </div>
+
+
+                    <!--Musical-->
+                    <div id="Musicaltab" class="content-pane fade">
+                        <div style="position:relative;">
+                            <div class="cell sizeM" data-sizelargew="sizeM" style="position:absolute; top:0px; left:0px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style="opacity: 1; width:428px; height:552px;">
+                                    <a ng-repeat="event in events | filter:filter.Name='any'" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+                                        <img ng-src="{{event.Url}}">
+                                    </a>
+                                </div>
+
+                            </div>
+                            <div class="cell sizeM" data-sizelargew="sizeM" style="position:absolute; top:0px; left:460.333333333333px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style="opacity: 1; width:400px; height:400px;">
+                                    <a ng-repeat="event in events | filter:filter.Name='gigi'" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+                                        <img ng-src="{{event.Url}}">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cell sizeMU1" data-sizelargew="sizeL" style="position:absolute; top:0px; left:898.666666666667px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style=" opacity:1; width:424px; height:393px;">
+                                    <a ng-repeat="event in events | filter:filter.Name='phantom'" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+                                        <img ng-src="{{event.Url}}" style="height:393px">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="cell sizeM" data-sizelargew="sizeM" style="position:absolute; top:575.333333333333px; left:0px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style="opacity: 1; width:428px; height:214px;">
+                                    <a ng-repeat="event in events | filter:filter.Name='AeroSmith'" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+                                        <img ng-src="{{event.Url}}">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="cell sizeMU3" data-sizelargew="sizeM" style="position:absolute; top:415.333333333333px; left:716.333333333333px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style="opacity: 1; width:600px; height:375px;">
+                                    <a ng-repeat="event in events | filter:filter.Name='cat'" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+                                        <img ng-src="{{event.Url}}">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cell sizeMU2" data-sizelargew="sizeL" style="position:absolute; top:440.166666666667px; left:440.666666666667px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style=" opacity:1; width:262px; height:349px;">
+                                    <a ng-repeat="event in events | filter:filter.Name='beauty'" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+                                        <p style="opacity: 1;">
+                                            <img ng-src="{{event.Url}}">
+                                        </p>
+                                    </a>
+                                </div>
+                            </div>
+                            <!--<div class="cell sizeM" data-sizelargew="sizeM" style="position:absolute; top:800.333333333333px; left:903.666666666667px;">
+                            <div class="box box-shadow box-radius box-shadowOn" style="opacity: 1; width:428px; height:206px;">
+
+                            </div>
+                        </div>-->
+                        </div>
+                    </div>
+
+
+                    <!--Movie-->
+                    <div id="Movietab" class="content-pane fade">
+                        <div style="position:relative;">
+                            <div class="cell sizeM4" style="position:absolute; top:0px; left:300px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style=" opacity:1; width:311px; height:413px;">
+                                    <a ng-repeat="event in events | filter:filter.Name='star wars'" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+                                        <p style="opacity: 1;">
+                                            <img ng-src="{{event.Url}}">
+                                        </p>
+                                    </a>
+</div>
+                            </div>
+                            <div class="cell sizeL" data-sizelargew="sizeL" style="position:absolute; top:0px; left:0px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style=" opacity:1; width:273px; height:410px;">
+                                    <a ng-repeat="event in events | filter:filter.Name='furious7'" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+                                        <p style="opacity: 1;">
+                                            <img ng-src="{{event.Url}}">
+                                        </p>
+                                    </a>
+</div>
+                            </div>
+                            <div class="cell sizeM1" data-sizelargew="sizeM" style="position:absolute; top:0px; left:629.666666666667px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style="opacity: 1; width:682px; height:413px;">
+                                    <a ng-repeat="event in events | filter:filter.Name='Avengers'" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+                                        <p style="opacity: 1;">
+                                            <iframe width="682" height="413" src="https://www.youtube.com/embed/JRbbgeLcZ54?autoplay=1&cc_load_policy=1" frameborder="0" allowfullscreen onplaying="4"></iframe>
+                                        </p>
+                                    </a>
+                                    <script>
+                                    document.getElementById('vid1').currentTime = 6;
+                                    </script>
+                                    
+                                    </div>
+                                </div>
+                            <div class="cell sizeM2" data-sizelargew="sizeM" style="position:absolute; top:430.166666666667px; left:622.666666666667px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style="opacity: 1; width:250px; height:347px;">
+                                    <a ng-repeat="event in events | filter:filter.Name='Jurassic'" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+                                        <p style="opacity: 1;">
+                                            <img ng-src="{{event.Url}}">
+                                        </p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cell sizeM" data-sizelargew="sizeM" style="position:absolute; top:431.333333333333px; left:0px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style="opacity: 1; width:604px; height:347px;">
+                                    <a ng-repeat="event in events | filter:filter.Name='Terminator'" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+                                        <p style="opacity: 1;">
+                                            <img ng-src="{{event.Url}}" style="height:347px">
+                                        </p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cell sizeM3" data-sizelargew="sizeM" style="position:absolute; top:430.333333333333px; left:893.333333333333px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style="opacity: 1; width:422px; height:347px;">
+                                    <a ng-repeat="event in events | filter:filter.Name='Chappie'" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+                                        <p style="opacity: 1;">
+                                            <img ng-src="{{event.Url}}" style="height:347px">
+                                        </p>
+                                    </a>
+                                </div>
+                            </div>
+                            <!--<div class="cell sizeM" data-sizelargew="sizeM" style="position:absolute; top:800.333333333333px; left:903.666666666667px;">
+                            <div class="box box-shadow box-radius box-shadowOn" style="opacity: 1; width:428px; height:206px;">
+
+                            </div>
+                        </div>-->
+                        </div>
+                    </div>
+                    <!--New Coming-->
+                    <div id="Newtab" class="content-pane fade">
+                          <div style="position:relative;">
+                            <div class="cell sizeN" data-sizelargew="sizeL" style="position:absolute; top:0px; left:0px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style=" opacity:1; width:332px; height:508px;">
+                                    <a ng-repeat="event in events | filter:filter.Name='Golf US Open'" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+                                        <p style="opacity: 1;">
+                                            <img ng-src="{{event.Url}}">
+                                        </p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cell sizeN" data-sizelargew="sizeL" style="position:absolute; top:518px; left:0px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style=" opacity:1; width:466px; height:311px;">
+                                    <a ng-repeat="event in events | filter:filter.Name='college football'" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+                                        <p style="opacity: 1;">
+                                            <img ng-src="{{event.Url}}">
+                                        </p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cell sizeN" data-sizelargew="sizeM" style="position:absolute; top:516px; left:500.666666666667px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style="opacity: 1; width:250px; height:314px;">
+                                    <a ng-repeat="event in events | filter:filter.Name='Joseph'" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+                                        <p style="opacity: 1;">
+                                            <img ng-src="{{event.Url}}">
+                                        </p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cell sizeN" data-sizelargew="sizeM" style="position:absolute; top:0px; left:974.666666666667px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style="opacity: 1; width:300px; height:465px;">
+                                    <a ng-repeat="event in events | filter:filter.Name='Shrek'" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+                                        <p style="opacity: 1;">
+                                            <img ng-src="{{event.Url}}">
+                                        </p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cell sizeN" data-sizelargew="sizeM" style="position:absolute; top:0px; left:374px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style="opacity: 1; width:528px; height:507px;">
+                                    <a ng-repeat="event in events | filter:filter.Name='Ted 2'" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+                                        <p style="opacity: 1;">
+                                            <img ng-src="{{event.Url}}">
+                                        </p>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="cell sizeN" data-sizelargew="sizeM" style="position:absolute; top:517.333333333333px; left:798.333333333333px;">
+                                <div class="box box-shadow box-radius box-shadowOn" style="opacity: 1; width:476px; height:313px;">
+                                    <a ng-repeat="event in events | filter:filter.Name='Minions'" data-ng-click="get(event.Id)" data-toggle="modal" data-target="#myModal">
+                                        <p style="opacity: 1;">
+                                            <iframe width="476" height="313" src="https://www.youtube.com/embed/dVDk7PXNXB8?t=5" frameborder="0" allowfullscreen></iframe>
+                                        </p>
+                                    </a>
+                                </div>
+                            </div>
+                            <!--<div class="cell sizeM" data-sizelargew="sizeM" style="position:absolute; top:800.333333333333px; left:903.666666666667px;">
+                            <div class="box box-shadow box-radius box-shadowOn" style="opacity: 1; width:428px; height:206px;">
+
+                            </div>
+                        </div>-->
+                        </div>
+                    </div>
+
+                </div>
+        <!-- footer 1-->
+        <footer id="footerWrapper">
+            <section id="mainFooter">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div class="footerWidget">
+                                <img src="http://aptosacademyofperformingarts.org/wp-content/uploads/2012/05/yelp.png" alt="2015 Project" id="footerLogo">
+                                <p><a href="#">Team 1</a> Professor: Lloyd<br />student 1: Qiwen Hu<br/>student 2:Zhaoyang Liu</p>
+                            </div>
+                        </div>
+                         
+                        <div class="col-sm-3">
+                            <div class="footerWidget">
+
+                                <h3>Connect US</h3>
+                                <address>
+                                    <p>
+                                        <i class="icon-location"></i>&nbsp;2115 Summit Avenue<br>
+                                        Saint Paul, Minnesota - USA <br>
+                                        <i class="icon-phone"></i>&nbsp;612.214.6795 <br>
+                                        <i class="icon-mail-alt"></i>&nbsp;<a href="woodmanhu@gmail.com">woodmanhu@gmail.com</a>
+                                    </p>
+                                </address>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="footerWidget">
+                                <h3>Event Website</h3>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section id="footerRights">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>Copyright © 2015 <a href="http://www.stthomas.edu" target="blank">Event Website</a> / All rights reserved.</p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </footer>
+            </div>
+
+
+
+            <script src="Scripts/angular.min.js"></script>
+
+            <script src="Scripts/jquery-2.1.3.js"></script>
+            <script src="Scripts/jquery-2.1.3.min.js"></script>
+            <script src="Scripts/bootstrap.min.js"></script>
+            <script src="Scripts/js/Search.js"></script>
+            <script src="Scripts/js/app.js"></script>
+</body>
+</html>
