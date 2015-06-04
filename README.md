@@ -1,6 +1,7 @@
 # TeamProject
-Team Member: Qiwen Hu, Zhaoyang liu
-Project Proposal:
+Team Member: Qiwen Hu, Zhaoyang liu.
+
+#Project Proposal:
 1. Overview:
 This project is to make some of web pages that users can achieve to see he schedule and join in the upcoming local events. Users can register an account first. And then they can check all the upcoming local events in one month. Events include sport games, great movies leasing, local festivals, great discount information. Any events that users are interested in can be chosen to join in. We have a join in button for every event. After users join in the event, the detail message and direction will be sent to users. In addition, users will be reminded when the event that they have joined in is coming.
 2. Scope
